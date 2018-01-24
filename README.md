@@ -80,7 +80,7 @@ let package = Package(
 ```
 
 Change the `main.swift` from `print("Hello World")` into:
-```
+```swift
 import MicroExpress
 
 let app = Express()
