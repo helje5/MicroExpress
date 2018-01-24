@@ -38,3 +38,18 @@ open class Router {
     try response.send("No middleware handled the request!")
   }
 }
+
+public extension Router {
+  
+  /// Register a middleware which triggers on a `GET`
+  /// with a specific path prefix.
+  func get(_ path: String = "",  middleware: @escaping Middleware) {
+    use { req, res, next in
+      guard req.header.method == .get,
+            req.header.target.hasPrefix(path)
+       else { return next() }
+      
+      try middleware(req, res, next)
+    }
+  }
+}
