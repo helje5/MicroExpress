@@ -7,7 +7,11 @@ app.use { req, res, next in // Logging
   next() // continue processing
 }
 
-app.get { req, res, _ in // Request Handling
+app.get("/todomvc") { _, res, _ in
+  try res.json(todos) // send JSON to the browser
+}
+
+app.get { req, res, _ in
   let text = req.param("text") ?? "Schwifty"
   try res.send("Hello, \(text) world! ")
 }

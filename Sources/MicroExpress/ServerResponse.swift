@@ -34,3 +34,23 @@ open class ServerResponse {
     writer.writeHeader(status: status, headers: headers)
   }
 }
+
+import Foundation
+
+public extension ServerResponse {
+  
+  /// Send a Codable object as JSON to the client.
+  func json<T: Codable>(_ model: T) throws {
+    // create a Data struct from the Codable object
+    let data = try JSONEncoder().encode(model)
+    
+    // setup headers
+    headers["Content-Type"]   = "application/json"
+    headers["Content-Length"] = "\(data.count)"
+    
+    // send the headers and the data
+    try flushHeader()
+    writer.writeBody(data)
+    writer.done()
+  }
+}
