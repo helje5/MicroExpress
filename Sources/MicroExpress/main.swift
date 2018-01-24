@@ -1,6 +1,7 @@
 let app = Express()
 
-app.use(querystring) // parse query params
+app.use(querystring, 
+        cors(allowOrigin: "*"))
 
 app.use { req, res, next in // Logging
   print("\(req.header.method): \(req.header.target)")
