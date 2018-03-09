@@ -51,7 +51,21 @@ open class Express {
       switch reqPart {
       case .head(let header):
         print("req:", header)
+        let head = HTTPResponseHead(version: header.version,
+                                    status: .ok)
+        let part = HTTPServerResponsePart.head(head)
+        _ = ctx.channel.write(part)
         
+        var buffer = ctx.channel.allocator.buffer(capacity: 42)
+        buffer.write(string: "Hello Schwifty World!")
+        let bodypart = HTTPServerResponsePart.body(.byteBuffer(buffer))
+        _ = ctx.channel.write(bodypart)
+        
+        let endpart = HTTPServerResponsePart.end(nil)
+        _ = ctx.channel.writeAndFlush(endpart).then {
+          ctx.channel.close()
+        }
+
       // ignore incoming content to keep it micro :-)
       case .body, .end: break
       }
