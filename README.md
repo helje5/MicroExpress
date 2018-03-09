@@ -70,7 +70,7 @@ let package = Package(
   name: "MicroHelloWorld",
   dependencies: [
     .package(url: "https://github.com/AlwaysRightInstitute/MicroExpress.git", 
-             branch: "master")
+             branch: "branches/swift-server-http-api")
   ],
   targets: [
     .target(name: "MicroHelloWorld",
