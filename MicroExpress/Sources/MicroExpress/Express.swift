@@ -18,9 +18,9 @@ open class Express {
       .serverChannelOption(reuseAddrOpt, value: 1)
       
       .childChannelInitializer { channel in
-        channel.pipeline.addHTTPServerHandlers()
-        
-        // this is where the action is going to be!
+        channel.pipeline.addHTTPServerHandlers().then {
+          channel.pipeline.add(handler: HTTPHandler())
+        }
       }
       
       .childChannelOption(ChannelOptions.socket(
@@ -39,6 +39,22 @@ open class Express {
     }
     catch {
       fatalError("failed to start server: \(error)")
+    }
+  }
+
+  final class HTTPHandler : ChannelInboundHandler {
+    typealias InboundIn = HTTPServerRequestPart
+    
+    func channelRead(ctx: ChannelHandlerContext, data: NIOAny) {
+      let reqPart = self.unwrapInboundIn(data)
+      
+      switch reqPart {
+      case .head(let header):
+        print("req:", header)
+        
+      // ignore incoming content to keep it micro :-)
+      case .body, .end: break
+      }
     }
   }
 }
