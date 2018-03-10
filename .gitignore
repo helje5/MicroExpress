@@ -3,4 +3,6 @@
 /Packages
 /.docker.build
 .buildzz
+xcuserdata
+*.xcuserdata
 
