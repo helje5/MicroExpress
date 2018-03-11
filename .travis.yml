@@ -1,0 +1,33 @@
+language:  generic
+
+notifications:
+  slack:
+    rooms:
+      - apacheexpress:9z2IfvxZfENp0TFmiYCgyUKz
+
+matrix:
+    include:
+        - os:   Linux
+          dist: trusty
+          env:  SWIFT_SNAPSHOT_NAME="https://swift.org/builds/swift-4.0.3-release/ubuntu1404/swift-4.0.3-RELEASE/swift-4.0.3-RELEASE-ubuntu14.04.tar.gz"
+          sudo: required
+        - os:   Linux
+          dist: trusty
+          env:  SWIFT_SNAPSHOT_NAME="https://swift.org/builds/swift-4.1-branch/ubuntu1404/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-03-10-a/swift-4.1-DEVELOPMENT-SNAPSHOT-2018-03-10-a-ubuntu14.04.tar.gz"
+          sudo: required
+        - os:   osx
+          osx_image: xcode9.2
+        - os:   osx
+          osx_image: xcode9.3beta
+
+before_install:
+    - ./.travis.d/before-install.sh
+
+install:
+    - ./.travis.d/install.sh
+
+script:
+    - export PATH="$HOME/usr/bin:$PATH"
+    - swift build -c release
+    - swift build -c debug
+    - ./.travis.d/run-tests.sh
