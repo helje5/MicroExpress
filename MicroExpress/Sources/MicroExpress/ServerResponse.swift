@@ -26,8 +26,8 @@ open class ServerResponse {
     let part = HTTPServerResponsePart.body(.byteBuffer(buffer))
     
     _ = channel.writeAndFlush(part)
-      .mapIfError(handleError)
-      .map { self.end() }
+               .mapIfError(handleError)
+               .map { self.end() }
   }
   
   /// Check whether we already wrote the response header.
@@ -51,7 +51,26 @@ open class ServerResponse {
     guard !didEnd else { return }
     didEnd = true
     _ = channel.writeAndFlush(HTTPServerResponsePart.end(nil))
-      .map { self.channel.close() }
+               .map { self.channel.close() }
   }
 }
 
+public extension ServerResponse {
+  
+  /// A more convenient header accessor. Not correct for
+  /// any header.
+  public subscript(name: String) -> String? {
+    set {
+      assert(!didWriteHeader, "header is out!")
+      if let v = newValue {
+        headers.replaceOrAdd(name: name, value: v)
+      }
+      else {
+        headers.remove(name: name)
+      }
+    }
+    get {
+      return headers[name].joined(separator: ", ")
+    }
+  }
+}
