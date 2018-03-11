@@ -1,6 +1,9 @@
 .DS_Store
 /.build
 /Packages
-/*.xcodeproj
 /.docker.build
+.buildzz
+xcuserdata
+*.xcuserdata
+*.build
 
