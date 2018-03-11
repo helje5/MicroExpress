@@ -7,6 +7,14 @@ app.use { req, res, next in
   next() // continue processing
 }
 
+app.get("/hello") { _, res, _ in
+  res.send("Hello")
+}
+
+app.get("/moo") { req, res, next in
+  res.send("Muhhh")
+}
+
 // Request Handling
 app.use { _, res, _ in
   res.send("Hello, Schwifty world!")

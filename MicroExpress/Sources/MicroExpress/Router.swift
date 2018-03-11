@@ -34,3 +34,19 @@ open class Router {
   }
 }
 
+public extension Router {
+  
+  /// Register a middleware which triggers on a `GET`
+  /// with a specific path prefix.
+  public func get(_ path: String = "",
+                  middleware: @escaping Middleware)
+  {
+    use { req, res, next in
+      guard req.header.method == .GET,
+        req.header.uri.hasPrefix(path)
+       else { return next() }
+      
+      middleware(req, res, next)
+    }
+  }
+}
