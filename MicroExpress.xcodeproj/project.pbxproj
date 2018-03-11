@@ -13,6 +13,7 @@
 		E84B1C7420545E8600822D06 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84B1C6F20545E8600822D06 /* IncomingMessage.swift */; };
 		E84B1C7520545E8600822D06 /* Express.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84B1C7020545E8600822D06 /* Express.swift */; };
 		E84B1C7620545E8600822D06 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84B1C7120545E8600822D06 /* Router.swift */; };
+		E893D88C2055988D00C6D26F /* QueryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893D88B2055988D00C6D26F /* QueryString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E84B1C6F20545E8600822D06 /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingMessage.swift; path = Sources/MicroExpress/IncomingMessage.swift; sourceTree = "<group>"; };
 		E84B1C7020545E8600822D06 /* Express.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Express.swift; path = Sources/MicroExpress/Express.swift; sourceTree = "<group>"; };
 		E84B1C7120545E8600822D06 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Router.swift; path = Sources/MicroExpress/Router.swift; sourceTree = "<group>"; };
+		E893D88B2055988D00C6D26F /* QueryString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueryString.swift; path = Sources/MicroExpress/QueryString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E84B1C6E20545E8500822D06 /* ServerResponse.swift */,
 				E84B1C6D20545E8500822D06 /* Middleware.swift */,
 				E84B1C7120545E8600822D06 /* Router.swift */,
+				E893D88B2055988D00C6D26F /* QueryString.swift */,
 			);
 			path = MicroExpress;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				E84B1C7320545E8600822D06 /* ServerResponse.swift in Sources */,
 				E84B1C7220545E8600822D06 /* Middleware.swift in Sources */,
 				E84B1C7620545E8600822D06 /* Router.swift in Sources */,
+				E893D88C2055988D00C6D26F /* QueryString.swift in Sources */,
 				E84B1C7520545E8600822D06 /* Express.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
