@@ -1,10 +1,8 @@
 // File: main.swift - Add to existing file
 let app = Express()
 
-
 // Reusable middleware up here
 app.use(querystring) // parse query params
-
 
 // Logging
 app.use { req, res, next in
@@ -12,8 +10,9 @@ app.use { req, res, next in
   next() // continue processing
 }
 
-app.get("/hello") { _, res, _ in
-  res.send("Hello")
+app.get("/todomvc") { _, res, _ in
+  // send JSON to the browser
+  res.json(todos)
 }
 
 app.get("/moo") { req, res, next in
