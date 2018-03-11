@@ -6,7 +6,7 @@ import NIOHTTP1
 
 open class Express : Router {
   
-  public init() {}
+  override public init() {}
   
   let loopGroup =
     MultiThreadedEventLoopGroup(numThreads: System.coreCount)
