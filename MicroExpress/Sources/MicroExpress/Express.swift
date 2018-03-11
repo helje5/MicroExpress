@@ -4,7 +4,7 @@ import Foundation
 import NIO
 import NIOHTTP1
 
-open class Express {
+open class Express : Router {
   
   let loopGroup =
     MultiThreadedEventLoopGroup(numThreads: System.coreCount)
@@ -19,7 +19,8 @@ open class Express {
       
       .childChannelInitializer { channel in
         channel.pipeline.addHTTPServerHandlers().then {
-          channel.pipeline.add(handler: HTTPHandler())
+          channel.pipeline.add(handler:
+            HTTPHandler(router: self))
         }
       }
       
@@ -45,19 +46,29 @@ open class Express {
   final class HTTPHandler : ChannelInboundHandler {
     typealias InboundIn = HTTPServerRequestPart
     
+    let router : Router
+    
+    init(router: Router) {
+      self.router = router
+    }
+
     func channelRead(ctx: ChannelHandlerContext, data: NIOAny) {
       let reqPart = self.unwrapInboundIn(data)
       
       switch reqPart {
-      case .head(let header):
-        let request  = IncomingMessage(header: header)
-        let response = ServerResponse(channel: ctx.channel)
-        
-        print("req:", header.method, header.uri)
-        response.send("Way easier to send data!!!")
+        case .head(let header):
+          let req = IncomingMessage(header: header)
+          let res = ServerResponse(channel: ctx.channel)
+          
+          // trigger Router
+          router.handle(request: req, response: res) {
+            (items : Any...) in // the final handler
+            res.status = .notFound
+            res.send("No middleware handled the request!")
+          }
 
-      // ignore incoming content to keep it micro :-)
-      case .body, .end: break
+        // ignore incoming content to keep it micro :-)
+        case .body, .end: break
       }
     }
   }
