@@ -10,7 +10,11 @@ import PackageDescription
 
 let package = Package(
     name: "MicroExpress",
-
+    
+    products: [
+      .library(name: "MicroExpress", targets: ["MicroExpress"]),
+    ],
+    
     dependencies: [
         /* Add your package dependencies in here
         .package(url: "https://github.com/AlwaysRightInstitute/cows.git",
