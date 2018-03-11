@@ -80,7 +80,7 @@ import Foundation
 public extension ServerResponse {
   
   /// Send a Codable object as JSON to the client.
-  func json<T: Codable>(_ model: T) {
+  func json<T: Encodable>(_ model: T) {
     // create a Data struct from the Codable object
     let data : Data
     do {
