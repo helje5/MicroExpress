@@ -88,7 +88,7 @@ import MicroExpress
 let app = Express()
 
 app.get("/") { req, res, next in
-  try res.send("Hello World")
+  res.send("Hello World")
 }
 
 app.listen(1337)
