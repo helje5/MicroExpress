@@ -30,4 +30,3 @@ script:
     - export PATH="$HOME/usr/bin:$PATH"
     - swift build -c release
     - swift build -c debug
-    - ./.travis.d/run-tests.sh
