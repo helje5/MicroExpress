@@ -15,6 +15,7 @@
 		E893D88C2055988D00C6D26F /* QueryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893D88B2055988D00C6D26F /* QueryString.swift */; };
 		E893D89020559A4400C6D26F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893D88F20559A4400C6D26F /* main.swift */; };
 		E893D8942055A6AF00C6D26F /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893D8932055A6AF00C6D26F /* TodoModel.swift */; };
+		E893D8962055AB6A00C6D26F /* CORS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893D8952055AB6A00C6D26F /* CORS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E893D88F20559A4400C6D26F /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E893D89120559A6500C6D26F /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Package.swift; path = MicroExpress/Package.swift; sourceTree = "<group>"; };
 		E893D8932055A6AF00C6D26F /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		E893D8952055AB6A00C6D26F /* CORS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CORS.swift; path = Sources/MicroExpress/CORS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				E84B1C6D20545E8500822D06 /* Middleware.swift */,
 				E84B1C7120545E8600822D06 /* Router.swift */,
 				E893D88B2055988D00C6D26F /* QueryString.swift */,
+				E893D8952055AB6A00C6D26F /* CORS.swift */,
 			);
 			path = MicroExpress;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				E84B1C7420545E8600822D06 /* IncomingMessage.swift in Sources */,
 				E893D8942055A6AF00C6D26F /* TodoModel.swift in Sources */,
 				E893D89020559A4400C6D26F /* main.swift in Sources */,
+				E893D8962055AB6A00C6D26F /* CORS.swift in Sources */,
 				E84B1C7320545E8600822D06 /* ServerResponse.swift in Sources */,
 				E84B1C7220545E8600822D06 /* Middleware.swift in Sources */,
 				E84B1C7620545E8600822D06 /* Router.swift in Sources */,

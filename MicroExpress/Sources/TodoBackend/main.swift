@@ -2,7 +2,8 @@
 let app = Express()
 
 // Reusable middleware up here
-app.use(querystring) // parse query params
+app.use(querystring,
+        cors(allowOrigin: "*"))
 
 // Logging
 app.use { req, res, next in
