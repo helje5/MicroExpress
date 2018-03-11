@@ -74,3 +74,36 @@ public extension ServerResponse {
     }
   }
 }
+
+import Foundation
+
+public extension ServerResponse {
+  
+  /// Send a Codable object as JSON to the client.
+  func json<T: Codable>(_ model: T) {
+    // create a Data struct from the Codable object
+    let data : Data
+    do {
+      data = try JSONEncoder().encode(model)
+    }
+    catch {
+      return handleError(error)
+    }
+    
+    // setup JSON headers
+    self["Content-Type"]   = "application/json"
+    self["Content-Length"] = "\(data.count)"
+    
+    // send the headers and the data
+    flushHeader()
+    
+    var buffer = channel.allocator.buffer(capacity: data.count)
+    buffer.write(bytes: data)
+    let part = HTTPServerResponsePart.body(.byteBuffer(buffer))
+
+    _ = channel.writeAndFlush(part)
+               .mapIfError(handleError)
+               .map { self.end() }
+  }
+}
+
