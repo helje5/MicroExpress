@@ -1,11 +1,14 @@
-import HTTP
+// File: IncomingMessage.swift - create this in Sources/MicroExpress
 
-public class IncomingMessage {
+import NIOHTTP1
 
-  public let header   : HTTPRequest // Swift Server API
+open class IncomingMessage {
+  
+  public let header   : HTTPRequestHead
   public var userInfo = [ String : Any ]()
-
-  init(header: HTTPRequest) {
+  
+  init(header: HTTPRequestHead) {
     self.header = header
   }
 }
+

@@ -1,5 +1,7 @@
-open class Router {
+// File: Router.swift - create this in Sources/MicroExpress
 
+open class Router {
+  
   /// The sequence of Middleware functions.
   private var middleware = [ Middleware ]()
   
@@ -10,32 +12,25 @@ open class Router {
   
   /// Request handler. Calls its middleware list
   /// in sequence until one doesn't call `next()`.
-  func handle(request  : IncomingMessage,
-              response : ServerResponse,
-              next     : () -> () = {}) throws
+  func handle(request        : IncomingMessage,
+              response       : ServerResponse,
+              next upperNext : @escaping Next)
   {
-    var didCallNext = true // to handle the empty case
+    let stack = self.middleware
+    guard !stack.isEmpty else { return upperNext() }
     
-    // loop over each middleware, call it until one
-    // doesn't call `next`
-    for middleware in middleware {
-      didCallNext = false
+    var next : Next? = { ( args : Any... ) in }
+    var i = stack.startIndex
+    next = { (args : Any...) in
+      // grab next item from matching middleware array
+      let middleware = stack[i]
+      i = stack.index(after: i)
       
-      try middleware(request, response) {
-        didCallNext = true
-      }
-      
-      // did the middleware call `next()`?
-      // if not, stop, request is handled
-      guard didCallNext else { break }
+      let isLast = i == stack.endIndex
+      middleware(request, response, isLast ? upperNext : next!)
     }
     
-    if !didCallNext { return } // done
-
-    // All of the middleware called next(),
-    // none handled the request.
-    response.status = .internalServerError
-    try response.send("No middleware handled the request!")
+    next!()
   }
 }
 
@@ -43,13 +38,15 @@ public extension Router {
   
   /// Register a middleware which triggers on a `GET`
   /// with a specific path prefix.
-  func get(_ path: String = "",  middleware: @escaping Middleware) {
+  public func get(_ path: String = "",
+                  middleware: @escaping Middleware)
+  {
     use { req, res, next in
-      guard req.header.method == .get,
-            req.header.target.hasPrefix(path)
+      guard req.header.method == .GET,
+        req.header.uri.hasPrefix(path)
        else { return next() }
       
-      try middleware(req, res, next)
+      middleware(req, res, next)
     }
   }
 }
