@@ -56,7 +56,8 @@ Dispatch, not Swift NIO - stay tuned).
 
 ## Using the Package
 
-Micro Hello World in 5 minutes:
+Micro Hello World in 5 minutes (or in 30s using the 
+[swift-xcode image](#swift-xcode) below):
 
 ```shell
 $ mkdir MicroHelloWorld && cd MicroHelloWorld
