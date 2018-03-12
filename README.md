@@ -8,6 +8,14 @@
 ![tuxOS](https://img.shields.io/badge/os-tuxOS-green.svg?style=flat)
 ![Travis](https://travis-ci.org/MicroExpress/MicroExpress.svg?branch=master)
 
+> **NOTE**:
+> The repository containing the 
+> [asynchronous variant of MicroExpress](https://github.com/NozeIO/MicroExpress)
+> now lives at [Noze.io](https://github.com/NozeIO).
+> Images have been updated.
+> This repository will eventually revert to the
+> [synchronous HTTP API variant](https://github.com/AlwaysRightInstitute/MicroExpress/tree/branches/swift-server-http-api).
+
 A micro server framework on top of
 [Swift NIO](https://github.com/apple/swift-nio).
 
