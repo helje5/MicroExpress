@@ -106,6 +106,29 @@ Done. Access via: [http://localhost:1337/](http://localhost:1337/)
 
 ### Xcode
 
+Choose the easy way using the 
+[swift-xcode](https://swiftxcode.github.io)
+[Swift NIO image](https://github.com/SwiftXcode/SwiftNIO_XcodeImage),
+or take the hard way and use `swift package generate-xcodeproj`.
+
+#### swift-xcode
+
+```shell
+brew install swiftxcode/swiftxcode/swift-xcode-nio
+swift xcode link-templates # <-- important!
+```
+
+1. Create new project (Command-Shift-N or File/New/Project ...)
+2. choose macOS / Server / Swift NIO template
+3. check desired options
+4. build and run, and then have fun!
+
+<img src="http://zeezide.com/img/microexpress-nio/01-new-project.jpg" align="center" />
+
+<img src="http://zeezide.com/img/microexpress-nio/02-new-project.jpg" align="center" />
+
+#### swift package generate-xcodeproj
+
 Important: This creates a few schemes in the Xcode project. Make sure to
            select the right one when building & running.
 
@@ -186,3 +209,8 @@ We like
 GitHub stars, 
 cool [contract work](http://zeezide.com/en/services/services.html),
 presumably any form of praise you can think of.
+
+
+### Want a Video Tutorial?
+
+<img src="http://zeezide.com/img/swift-nio-cows.gif" />
