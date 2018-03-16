@@ -6,7 +6,7 @@
 ![Swift 4](https://img.shields.io/badge/swift-4-blue.svg)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
 ![tuxOS](https://img.shields.io/badge/os-tuxOS-green.svg?style=flat)
-![Travis](https://travis-ci.org/MicroExpress/MicroExpress.svg?branch=master)
+![Travis](https://travis-ci.org/AlwaysRightInstitute/MicroExpress.svg?branch=master)
 
 > **NOTE**:
 > The repository containing the 
@@ -16,24 +16,28 @@
 > This repository will eventually revert to the
 > [synchronous HTTP API variant](https://github.com/AlwaysRightInstitute/MicroExpress/tree/branches/swift-server-http-api).
 
-A micro server framework on top of
-[Swift NIO](https://github.com/apple/swift-nio).
+A micro server framework on top of the Swift Server WG HTTP API.
+
+**Swift NIO**: The Swift NIO version moved over 
+[MicroExpress/NIO](https://github.com/NozeIO/MicroExpress/).
+This is probably what you are looking for :-)
+
 
 It adds an Express like API on top of the 
-low level [Swift NIO](https://github.com/apple/swift-nio/tree/1.1.0) API.
+low level Swift Server WG HTTP API.
 ```swift
 import MicroExpress
 
 let app = Express()
 
 app.get("/moo") { req, res, next in
-  res.send("Muhhh")
+  try res.send("Muhhh")
 }
 app.get("/json") { _, res, _ in
-  res.json([ "a": 42, "b": 1337 ])
+  try res.json([ "a": 42, "b": 1337 ])
 }
 app.get("/") { _, res, _ in
-  res.send("Homepage")
+  try res.send("Homepage")
 }
 
 app.listen(1337)
